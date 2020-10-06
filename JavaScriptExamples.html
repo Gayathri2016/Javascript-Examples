@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<style>
+.sq
+{
+
+	display: inline-block;
+	border-width:thin;
+	border-style: dotted;
+	border-color: blue;
+
+
+	width: 50px;
+	height: 50px;
+
+}
+.sq span{
+	border-radius: 50%;
+	background-color: red;
+	vertical-align: middle;
+
+}
+</style>
+</head>
+<body>
+	<h1>Custom Range Slider</h1>
+
+	<div class="slidecontainer">
+	  <p>Default range slider:</p>
+	  <input type="range" min="1" max="100" value="50">
+
+	  <p>Custom range slider:</p>
+	  <input type="range" id="myRange" min="1" max="80" value="50" class="slider" id="myRange"> Value: <span id="sliderTxt"></span>
+	</div>
+	<script>
+	var slider = document.getElementById("myRange");
+	var output = document.getElementById("sliderTxt");
+	output.innerHTML = slider.value;
+
+	slider.oninput = function() {
+	  output.innerHTML = this.value;
+	}
+	</script>
+<h2>JavaScript Solutions</h2>
+
+
+<button type="button"
+onclick="document.getElementById('demo').innerHTML = parseTxt(); "><!--1999999999   218765-->
+display.</button>
+<!--MajorityEle([668474]) StrReverse('I love you') Factorial(8)
+IsPalindrome('never odd or even') AddNum(140)  CapitalizeLetter('hello apple')
+LCM(10, 25) getLastKid(3, 5, 3) getTheLastPosition(3, 5, 3)
+findDuplicates([4,3,2,7,8,2,3,1])  longestCommonPrefix(['dog','racecar','car']) 'flower','flow','flight'
+longestCommonPrefix(['aca', 'cba']) threeSum([-1, 0, 1, 2, -1, -4])
+mergeIntervals([[1,4],[3,5],[2,4],[7,10]])
+ mergeIntervalsStack([[1,3],[2,6],[8,10],[15,18]])
+incrementLastEleInArr([1,2,3,4])
+binarySearch([3,4,5,6,7,9,10,1], 9)
+getLastKid(3, 5, 3)
+findMax([1,1,1,1,1,100])-->
+<p id="demo" ></p>
+<div class='sq'>
+	<span></span>
+</div>
+<div class='sq'>
+</div>
+</body>
+
+<script>
+// Result count: 2407905288
+
+/**
+ * Counting Inversion Using MergeSort
+ */
+// let arr = [1,3,5,2,6,4,7,9,8,10]
+function merge(a, b) {
+  let i = 0
+  let j = 0
+  let temp = []
+  let count = a.count + b.count
+  while(i < a.arr.length && j < b.arr.length) {
+    if(a.arr[i] > b.arr[j]) {
+      temp.push(b.arr[j])
+      j++
+      count += a.arr.length - i
+    } else {
+      temp.push(a.arr[i])
+      i++
+    }
+  }
+  temp = [...temp, ...a.arr.slice(i), ...b.arr.slice(j)]
+  return {arr: temp, count }
+}
+function mergeSort(obj) {
+  if(obj.arr.length === 1) {
+    return obj
+  }
+  let middle = Math.floor(obj.arr.length/2)
+  let left = {arr: obj.arr.slice(0, middle), count: obj.count}
+  let right = {arr: obj.arr.slice(middle), count: obj.count}
+  let result = merge(mergeSort(left), mergeSort(right))
+  return result
+}
+// console.log(mergeSort({arr, count: 0}))
+
+
+
+/*
+  Classic Merge Sort
+ */
+
+ // [1,3,5,2,6,4,7,9,8,10]
+ // [1,3,5,2,6] [4,7,9,8,10]
+ // [1,3,5] [2,6] [4,7,9] [8,10]
+ // [1,3] [5] [2] [6] [4,7] [9] [8] [10]
+ // [1] [3] [5] [2] [6] [4] [7] [9] [8] [10]
+
+// let arr = [1,3,5,2,6,4,7,9,8,10]
+// function merge(a, b) {
+//   let i = 0
+//   let j = 0
+//   let temp = []
+//   while(i < a.length && j < b.length) {
+//     if(a[i] > b[j]) {
+//       temp.push(b[j])
+//       j++
+//     } else {
+//       temp.push(a[i])
+//       i++
+//     }
+//   }
+//   temp = [...temp, ...a.slice(i), ...b.slice(j)]
+//   return temp
+// }
+// function mergeSort(arr) {
+//   if(arr.length === 1) {
+//     return arr
+//   }
+//   let middle = Math.floor(arr.length/2)
+//   let left = arr.slice(0, middle)
+//   let right = arr.slice(middle)
+//   console.log("lef, right, middle", left, right, middle)
+//   let result = merge(mergeSort(left), mergeSort(right))
+//   return result
+// }
+// mergeSort(arr)
+function StrReverse(str)
+{
+	var reverse= "";
+
+	for(var i=str.length-1;i>=0; i--)
+	{
+			reverse += str[i];
+
+	}
+	return reverse;
+}
+const strRev = (str) => str.split(' ').reverse().join('');
+function Factorial(x)
+{
+	var num =1;
+	while(x > 1)
+	{
+		num *= x;
+		x--;
+
+	}
+	return num;
+}
+function SumFibEvenNum()
+{
+	var range = 4000000;
+	var f1=1, f2=1, sum =0, result=0;
+	  while(sum < range)
+	  {
+		if(sum % 2 == 0)
+		  result+=sum;
+		sum = f1 +f2;
+		f2 = f1;
+		f1 = sum;
+	  }
+}
+function FindLargePrimeFactor()
+{
+	var num = 600851475143;
+	var counter = 2;
+	var largestPrime =0;
+	for(var i=2; i<=num;i++)
+	{
+		if(num%i ==0){
+			largestPrime = i;
+			num = num/i;
+		}
+		if(largestPrime > num )
+		{
+			return largestPrime;
+		}
+
+	}
+
+}
+function TwoSum(array, target)
+{
+  let mymap = new Map();
+  for(let i = 0; i<array.length; i++)
+  {
+   	let tval = target - array[i];
+		if(array.includes(tval) &&  i != array.indexOf(tval))
+		{
+			mymap.set(i, array[i]);
+			mymap.set(array.indexOf(target-array[i]), target-array[i]);
+			break;
+		}
+
+  }
+  return Array.from(mymap.keys());
+
+
+
+}
+function MajorityEle(A){
+
+	let count = 1;
+	let first = A[0];
+	for(let i =1; i<A.length; i++)
+	{
+		if(first == A[i])
+		{
+			 count ++;
+			 if(count > Math.floor(A.length/2))
+			 {
+				return A[i]+ "which occurs" + count + "times which is greater than" +  Math.floor(A.length/2) ;
+			 }
+		}else
+		{
+
+			first = A[i];
+		}
+	}
+return A;
+
+}
+function IsPalindrome(str)
+{
+	var reverse = "";
+	str = str.split(" ").join("");
+	for(var i =str.length-1; i>=0; i--)
+	{
+		reverse += str[i];
+	}
+	if(str === reverse)
+	{
+		return true;
+	}else {
+		return false;
+	}
+
+
+}
+function AddNum(x)
+{
+
+	var result =0;
+	for(var i=0;i<=x;i++)
+	{
+
+		result += i;
+
+
+	}
+	return result;
+}
+function CapitalizeLetter(str)
+{
+
+	str = str.split(" ");
+	for(var i =0; i<str.length; i++)
+	{
+		str[i] = str[i][0].toUpperCase() + str[i].substr(1);
+
+	}
+	return str.join(" ");
+}
+function GCM(x, y)
+{
+	let min = Math.min(x, y);
+	let max = min ===x ? y :x;
+
+	if(max%min ===0)
+	{
+		return min;
+	}else {
+		let mid = Math.floor(max/2);
+		//let _divisor = [];
+		for(let i=mid;i>0;i--){
+			if(max%i===0 && min%i===0)
+			{
+				return i;
+			}
+		}
+		//return _divisor;
+	}
+}
+function GCMRecussive(x, y)
+{
+	let max = Math.max(x, y);
+	if(y == 0)
+	{
+		return x;
+	}else {
+		return GCMRecussive(y, x%y)
+	}
+}
+function LCM(x,y)
+{
+	return (x * y)/GCMRecussive(x, y);
+}
+//n kids siting as circle
+// k toys to  distribute
+//i is position to start from
+// need to findout which kid gets lasttoy
+function getLastKid(n,k, i)
+{
+	if(k>n)
+	{
+		return i + (k%n)-1;
+	}
+	else{
+		return i+n-1;
+	}
+}
+//const getTheLastPosition = (kids, toys, startPosition) => toys % kids + startPosition-1 || kids;
+
+function findDuplicates(nums)
+{
+	//let hashMap = {};
+	if(nums.length <=1)
+		return false;
+  let result=[];
+  for(let i = 0; i<nums.length; i++)
+  {
+    if(result.indexOf(nums[i]) == -1)
+    {
+      result.push(nums[i]);
+    }
+
+  }
+	return result;
+}
+function removeDuplicates(nums)
+{
+	let hashMap = [];
+
+  for(let i = 0; i<nums.length; i++)
+  {
+    if(hashMap.indexOf(nums[i]) == -1)
+    {
+      hashMap.push(nums[i])
+
+    }
+
+  }
+	return hashMap;
+}
+function longestCommonPrefix(strs)
+{
+	if(strs == 0 || strs.length === 0 )
+	{
+		return "";
+	}else if(strs.length ==1)
+	{
+		return strs[0];
+	}
+	let first = strs[0];
+	let match;
+
+	for(let i=1;i<strs.length;i++)
+	{
+
+		let strAlpha = strs[i].split("");
+    match = "";
+		for(let j=0; j<strAlpha.length;j++)
+		{
+			if( first.length > j && strAlpha[j] == first[j]){
+				match +=strAlpha[j];
+
+			}
+			else{
+				break;
+			}
+
+		}
+		first = match;
+
+
+	}
+	return match;
+
+}
+function palindrome(x)
+{
+	if(x<0){return false;}
+	let j = 0, k=x;
+
+	while(x>0)
+	{
+		j = j * 10 + x %10;
+		x = parseInt(x/10);
+
+	}
+	if(j == k)
+	{
+		return true;
+
+	}else {
+
+		return false;
+	}
+}
+function threeSum(nums)
+{
+	let result = [];
+	nums.sort((a,b)=> a-b);
+	let sum ;
+	for(let i =0;i<nums.length-2;i++)
+	{
+		j= i+1;
+		k = nums.length -1;
+		if(i > 0 && nums[i] === nums[i-1])
+		continue;
+		while(j<k)
+		{
+			sum = nums[i]+nums[j]+nums[k];
+			if(sum ==0)
+			{
+				result.push([nums[i], nums[j], nums[k]]);
+				j+1;
+				k-1;
+				//skip duplicates from j iterator
+        while(j<k && nums[j]==nums[j-1])
+          j+1;
+
+        //skip duplicates from k iterator
+        while(j<k && nums[k]==nums[k+1])
+          k-1;
+			}else if(sum<0) {
+				j = j+1;
+
+			}else
+			{
+				k = k-1;
+			}
+		}
+
+	}
+	return result;
+}
+function mergeIntervals(nums)
+{
+	var result =[], last;
+	nums.forEach(function(n){
+		if(!last || n[0] > last[1])
+			return result.push(last = n);
+		else if(n[1] >last[1])
+			last[1] = n[1];
+	});
+	return result;
+}
+function mergeIntervalsStack(nums)
+{
+	if(nums.length <=1)
+		return nums;
+	let stack =[],top;
+	//start the loop and merge if needed
+	for(let i = 0; i < nums.length; i++ )
+	{
+		top = stack[stack.length-1];
+		stack.push(findInterval(nums[i], top));
+
+	}
+
+	return stack;
+
+
+}
+function findInterval(nums, top)
+{
+	let stack =[];
+	if(!top || top.length == 0)
+		stack.push(top = nums);
+	else if(top[0][1] < nums[0])
+		stack.push(top = nums);
+	else if(top[0][1] < nums[1])
+	{
+		top[0][1] = nums[1];
+	}
+	return stack;
+}
+function incrementLastEleInArr(x)
+{
+	let result ="";
+	x.forEach(function(i)
+	{
+		if(i === (x.length))
+			result += (i+1);
+		else
+			result +=i;
+
+	});
+	return result;
+}
+function binarySearch(x, target)
+{
+   let low =0;
+   let high = x.length-1;
+
+	 x.sort((a,b)=> a-b);
+   while (low <= high)
+    {
+			let mid  = parseInt((low + high)/2);
+       if(x[mid] === target)
+			 	return mid;
+       else if(x[mid] < target)
+			 	low = mid +1;
+       else
+			 	high = mid -1;
+    }
+}
+function findMax(x)
+{
+	let y = 0;
+	let z = 0;
+	for(let i =0;i<x.length;i++)
+	{
+		let c = choice(i, x.length);
+		switch(c)
+		{
+			case '1':
+			case '2':
+			case '3':
+		}
+	}
+	return y;
+}
+function choice(i, l)
+{
+	let c = 0;
+	if(i+1 > l)
+	{
+		c= i + (c % l) -1;
+	}else {
+		c= i +(c%l) ;
+	}
+}
+function swap(n, i, j)
+{
+	let temp = n[i];
+	n[i] = n[j];
+	n[j] = temp;
+}
+function findNext(n)//218765
+{
+	let temp = n.toString().split('');
+
+	let result ='';
+	let i;
+
+	for(i = temp.length-1; i>0;i--)
+	{
+		if(temp[i] > temp[i-1])
+		{
+			break;
+		}
+	}
+	if(i === -1)
+		return -1;
+	else {
+		let x = temp[i-1]
+		let min = i
+		let j = i+1
+		while(j<n && j<=temp.length)
+		{
+			if(temp[j]>x && temp[j]< temp[min])
+				min = j;
+
+			j++;
+		}
+
+		swap(temp, i-1, min);
+		result = temp.slice(0, i).join('')+ temp.slice(i, temp.length).sort().join('');
+
+		return result;
+
+	}
+
+
+
+}
+/*var sortedSquares = function(A) {
+    let out =[]
+    let prev = Math.abs(A[0])
+    for(let i=0;i<A.length;i++)
+        {
+					out.push(A[i] * A[i])
+        }
+		}
+  return 0;//out.sort();
+};*/
+
+//console.log(sortedSquares([-4,-1,0,3,10]));
+count = 0;
+function quickSort(arr, l, r) {
+
+  if (l >= r) { return; }
+  count += (r-l)-1;
+  p = partition(arr, l, r);
+  quickSort(arr, l, p-1);
+  quickSort(arr, p+1, r);
+}
+
+function partition(arr, l, r) {
+
+    var pivot = arr[r];
+
+    var i = l;
+    for (var j = l+1; j <= r; j++) {
+
+      if (arr[j] < pivot) {
+        swap(arr, i, j);
+        i++;
+      }
+    }
+    swap(arr, i-1, l);
+    return i;
+}
+
+function swap(array, index1, index2) {
+  //swaps elements by their indices in place in given array with the indices element1 and element2
+  if(index1 != index2) {
+    var temp = array[index1];
+    array[index1] = array[index2];
+    array[index2] = temp;
+    return array;
+  }
+}
+var allText =[];
+var allTextLines = [];
+var Lines = [];
+
+let url = "https://raw.githubusercontent.com/beaunus/stanford-algs/master/testCases/course1/assignment3Quicksort/input_dgrcode_17_100000.txt";
+let url1 = "file:///Users/gayathrimahamkali/Desktop/_32387ba40b36359a38625cbb397eee65_QuickSort.txt"
+sendRequest(url);
+function sendRequest(url1)
+	{
+		var response = null;
+		var connection = new XMLHttpRequest();
+		try
+		{
+			connection.open("GET", url, false);
+			connection.send();
+			if(connection.readyState == 4){
+				allText = connection.responseText
+				allTextLines = allText.split(/\r\n|\n/);
+				console.log(allTextLines);
+			//	console.log("alltext:"+ allText);
+				response = connection.responseText;}
+		}
+		catch(e)
+		{
+			alert("ERROR: The remote host could not be found or the connection was refused.");
+			return false;
+		}
+		//alert(response);
+		return false;
+	}
+console.log("sort:" + quickSort(allTextLines.slice(0,allTextLines.length-1),0,allTextLines.length-2))
+console.log("quick sort count:"+ count);
+</script>
+</html>
