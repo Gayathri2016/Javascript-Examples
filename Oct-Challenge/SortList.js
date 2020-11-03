@@ -45,5 +45,22 @@ var sortedMerge = function(l,r){
     return result;
 
 };
-//var list = new Node();
-console.log(add(4));
+class LinkedList {
+    constructor(value) {
+        this.head = null;
+        this.length = 0;
+        this.addToHead(value);
+    }
+    
+    addToHead(value) {
+        const newNode = { value }; // 1
+        newNode.next = this.head;  // 2
+        this.head = newNode;       // 3
+        this.length++;
+        return this;
+    }
+}
+const list = new LinkedList(1)
+    .addToHead(2)
+    .addToHead(3);
+console.log(list);
