@@ -22,5 +22,19 @@ var minDepth = function(root) {
     return Math.min(minDepth(root.right), minDepth(root.left))+1;
 
 };
+
+var maxAncestorDiff = function(root) {
+  let sum =0;
+  traverse(root);
+  function traverse(root){
+    if(!root) return 0;
+    let left = traverse(root.left);
+    let right = traverse(root.right);
+    sum = Math.max(right-left, sum);
+  }
+  return sum;
+
+}; 
 console.log(tree);
-  console.log(minDepth(tree));
+console.log(minDepth(tree));
+console.log(maxAncestorDiff(tree));
