@@ -22,7 +22,12 @@ var minDepth = function(root) {
     return Math.min(minDepth(root.right), minDepth(root.left))+1;
 
 };
-
+var maxDepth = function(root) {
+  if(root==null) return 0;
+ if(!root.left) return maxDepth(root.right)+1;
+ if(!root.right) return maxDepth(root.left)+1;
+ return Math.max(maxDepth(root.right),maxDepth(root.left))+1
+};
 var maxAncestorDiff = function(root) {
   let sum =0;
   traverse(root);
