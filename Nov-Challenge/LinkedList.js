@@ -148,7 +148,16 @@ var addTwoNumbers1 = function(n1, n2) {
     
   return sum;
 };
-
+var swapPairs = function(head) {
+  if(!head || !head.next){
+       return head;
+   }  
+   let temp = head.val;
+   head.val = head.next.val;    
+   head.next.val = temp;
+   swapPairs(head.next.next);
+   return head;
+};
    var l1 = new MyLinkedList();
    var l2 = new MyLinkedList();
    l1.addAtHead(7);
