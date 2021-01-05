@@ -158,6 +158,21 @@ var swapPairs = function(head) {
    swapPairs(head.next.next);
    return head;
 };
+var mergeTwoLists = function(l1, l2) {
+  if(l1==null && l2==null) return null;
+  if(l1 == null && l2!=null) return l2;
+  if(l1!=null && l2 == null) return l1;
+  let dummy= new ListNode(0);
+  if(l1.val <l2.val){
+      dummy.next = l1;
+      dummy.next.next = mergeTwoLists(l1.next,l2);
+  }else{
+      dummy.next = l2;
+      dummy.next.next = mergeTwoLists(l1,l2.next);
+  }
+  return dummy.next;
+  
+};
    var l1 = new MyLinkedList();
    var l2 = new MyLinkedList();
    l1.addAtHead(7);
