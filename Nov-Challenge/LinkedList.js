@@ -173,6 +173,21 @@ var mergeTwoLists = function(l1, l2) {
   return dummy.next;
   
 };
+
+var deleteDuplicates = function(head) {
+    
+  if(!head || head.next == null) return head;
+  let dummy= head.next;
+  if(head.val != dummy.val){
+    head.next = deleteDuplicates(dummy);
+    return head;
+  }else{
+    while(dummy && dummy.val == head.val)
+      dummy = dummy.next;
+    return deleteDuplicates(dummy);
+  }
+    
+};
    var l1 = new MyLinkedList();
    var l2 = new MyLinkedList();
    l1.addAtHead(7);
