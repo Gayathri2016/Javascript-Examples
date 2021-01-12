@@ -61,8 +61,14 @@ var findKthPositive = function(arr, k) {
      }
     return res[k-1];
   };
+
+  const findKthPositive1 = (arr, k) => {
+    for (let i = 1, j = 0; ; i++)
+      if (i === arr[j]) j++;
+      else if (k === i - j) return i;
+  };
   let arr=[2,3,4,7,11], k=5;
   let arr1=[4,5,7,9,11];
   let arr3=[1,2,3,4],k1=2;
   let arr2=[1,13,18],k2=17;
-  console.log(findKthPositive(arr3,k1));
+  console.log(findKthPositive1(arr3,k1));
