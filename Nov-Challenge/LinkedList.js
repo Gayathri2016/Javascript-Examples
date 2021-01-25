@@ -188,6 +188,48 @@ var deleteDuplicates = function(head) {
   }
     
 };
+var mergeLists = function(left,right){
+  if(!left)
+    return right;
+  else if(!right)
+    return left;
+  else if(left.val<right.val){
+    left.next = mergeLists(left.next,right);
+    return left;
+  }else{
+    right.next = mergeLists(left,right.next);
+    return right;
+  }
+}
+var helper = function(lists, start, end){
+  if(start === end){
+    return lists[start];
+  }else if(start<end){
+    const mid = parseInt((start+end)/2);
+    const left = helper(lists, start, mid);
+    const right = helper(lists, mid+1, end);
+    return mergeLists(left, right);
+
+  }else{
+    return null;
+  }
+}
+var mergeKLists = function(lists) {
+    return helper(lists,0,lists.length-1);
+};
+var mergeKLists1 = function(lists) {
+  const mergedList = [];
+  let i = 0;
+  lists.forEach(function(list) {
+      let tempList = list;
+      while(tempList && tempList.val !== undefined) {
+          mergedList[i] = tempList.val;
+          tempList = tempList.next;
+          i++;
+      }
+  });
+  return mergedList.sort(function(a,b) { return a - b });
+};
    var l1 = new MyLinkedList();
    var l2 = new MyLinkedList();
    l1.addAtHead(7);
