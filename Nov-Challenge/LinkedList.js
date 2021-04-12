@@ -230,6 +230,20 @@ var mergeKLists1 = function(lists) {
   });
   return mergedList.sort(function(a,b) { return a - b });
 };
+var isPalindrome = function (head) {
+  let slow= head,fast=head,prev,temp;
+  while(fast && fast.next)
+    slow = slow.next,fast=fast.next.next;
+  prev=slow, slow=slow.next, prev.next = null;
+  while(slow)
+    temp=slow.next,slow.next=prev,prev=slow,slow=temp;
+  fast=head,slow=prev
+  while(slow)
+    if(fast.val !==slow.val) return false;
+    else fast=fast.next,slow=slow.next;
+    return true;
+}
+
    var l1 = new MyLinkedList();
    var l2 = new MyLinkedList();
    l1.addAtHead(7);
@@ -239,7 +253,14 @@ var mergeKLists1 = function(lists) {
    l2.addAtHead(5);
    l2.addAtHead(6);
    l2.addToTail(4);
-   console.log("l1:",l1,"l2",l2);
+   //console.log("l1:",l1,"l2",l2);
    //console.log("reverseList:", reverseList(l1));
 
-   console.log(addTwoNumbers1(l1,l2));
+   //console.log(addTwoNumbers1(l1,l2));
+   var l3 = new MyLinkedList();
+   l3.addAtHead(1);
+   l3.addAtHead(2);
+   l3.addAtHead(2);
+   l3.addAtHead(1);
+   console.log(isPalindrome(l3));
+   //console.log("l3",l3);
