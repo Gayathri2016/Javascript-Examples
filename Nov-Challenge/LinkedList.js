@@ -243,7 +243,24 @@ var isPalindrome = function (head) {
     else fast=fast.next,slow=slow.next;
     return true;
 }
-
+//1->2->3->4->2->5
+//1->2->2->3->4->5
+//3->1->2->4->5
+//1->2->3->4->5
+var partition = function (head, x) {
+ let fdum = new ListNode(0),
+   bdum = new ListNode(0),
+   front = fdum,
+   back = bdum,
+   curr = head
+ while (curr) {
+   if (curr.val < x) front.next = curr, front = curr
+   else back.next = curr, back = curr
+   curr = curr.next
+ }
+ front.next = bdum.next, back.next = null
+ return fdum.next
+};
    var l1 = new MyLinkedList();
    var l2 = new MyLinkedList();
    l1.addAtHead(7);
